@@ -11,7 +11,7 @@ Setting Up the Development Environment
 
    .. code-block:: bash
 
-       git clone https://github.com/yourusername/moneyx.git
+       git clone https://github.com/devAbreu/moneyx.git
        cd moneyx
 
 2. Create a virtual environment (optional but recommended):

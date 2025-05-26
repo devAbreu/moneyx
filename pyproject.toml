@@ -48,7 +48,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/devAbreu/moneyx"
-Documentation = "https://github.com/devAbreu/moneyx"
+Documentation = "https://moneyx.readthedocs.io/en/latest/"
 "Bug Tracker" = "https://github.com/devAbreu/moneyx/issues"
 "Source Code" = "https://github.com/devAbreu/moneyx"
 "Changelog" = "https://github.com/devAbreu/moneyx/blob/main/CHANGELOG.md"

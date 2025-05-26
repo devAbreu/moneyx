@@ -56,3 +56,15 @@ Why use moneyx?
 * **Compliance**: ISO 4217 support ensures standard currency handling
 * **Performance**: Optimized for both individual and bulk operations
 * **Type hints**: Full type annotation support for modern development 
+
+The Money Pattern
+----------------
+
+``moneyx`` implements the Money Pattern as described by Martin Fowler in his book "Patterns of Enterprise Application Architecture" (2002). As Fowler notes:
+
+    "A large proportion of the computers in this world manipulate money, so it's always puzzled me 
+    that money isn't actually a first class data type in any mainstream programming language."
+
+The Money Pattern creates a first-class representation of monetary values that handles currency, precision, and rounding issues properly. By implementing this pattern, ``moneyx`` helps you avoid common pitfalls in financial calculations.
+
+Learn more about the pattern at `Martin Fowler's Money Pattern <https://martinfowler.com/eaaCatalog/money.html>`_. 

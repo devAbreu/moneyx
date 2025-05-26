@@ -21,7 +21,7 @@ For development, you can install the package with additional dependencies:
 .. code-block:: bash
 
     # Clone the repository
-    git clone https://github.com/yourusername/moneyx.git
+    git clone https://github.com/devAbreu/moneyx.git
     cd moneyx
 
     # Install with development dependencies

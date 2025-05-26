@@ -7,8 +7,8 @@ sys.path.insert(0, os.path.abspath("../../src"))
 
 # Project information
 project = "moneyx"
-copyright = f"{datetime.now().year}, Your Name"
-author = "Your Name"
+copyright = f"{datetime.now().year}, devAbreu"
+author = "devAbreu"
 
 # The full version, including alpha/beta/rc tags
 release = "0.1.0"
