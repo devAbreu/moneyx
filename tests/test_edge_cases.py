@@ -83,34 +83,69 @@ class TestRoundingEdgeCases:
     def test_special_decimal_cases(self):
         """Test special cases for decimal rounding."""
         # Test already correctly rounded values
-        assert apply_rounding(Decimal("2.00"), RoundingMode.HALF_UP, 2) == Decimal("2.00")
+        assert apply_rounding(Decimal("2.00"), RoundingMode.HALF_UP, 2) == Decimal(
+            "2.00",
+        )
         assert apply_rounding(Decimal("2"), RoundingMode.HALF_UP, 0) == Decimal("2")
-        
+
         # Test special cases with non-int exponents (NaN, Infinity) - we just want to ensure no errors
         # and proper handling - these should fall back to 0 decimal places as a safe default
         try:
             special_decimal = Decimal("NaN")
-            result = apply_rounding(special_decimal, RoundingMode.HALF_UP, 2)
+            # Just call the function without assigning to a variable we don't use
+            apply_rounding(special_decimal, RoundingMode.HALF_UP, 2)
             # We don't need to assert the exact result, just that it handled the case
         except Exception:
             pytest.fail("apply_rounding should handle special Decimal values")
-            
+
     def test_half_towards_zero_rounding(self):
         """Test the HALF_TOWARDS_ZERO rounding mode."""
         # Test with exactly 0.5 - should round towards zero
-        assert apply_rounding(Decimal("2.5"), RoundingMode.HALF_TOWARDS_ZERO, 0) == Decimal("2")
-        assert apply_rounding(Decimal("-2.5"), RoundingMode.HALF_TOWARDS_ZERO, 0) == Decimal("-2")
-        
+        assert apply_rounding(
+            Decimal("2.5"),
+            RoundingMode.HALF_TOWARDS_ZERO,
+            0,
+        ) == Decimal("2")
+        assert apply_rounding(
+            Decimal("-2.5"),
+            RoundingMode.HALF_TOWARDS_ZERO,
+            0,
+        ) == Decimal("-2")
+
         # Test with non-half values - should use HALF_UP
-        assert apply_rounding(Decimal("2.4"), RoundingMode.HALF_TOWARDS_ZERO, 0) == Decimal("2")
-        assert apply_rounding(Decimal("2.6"), RoundingMode.HALF_TOWARDS_ZERO, 0) == Decimal("3")
-        
+        assert apply_rounding(
+            Decimal("2.4"),
+            RoundingMode.HALF_TOWARDS_ZERO,
+            0,
+        ) == Decimal("2")
+        assert apply_rounding(
+            Decimal("2.6"),
+            RoundingMode.HALF_TOWARDS_ZERO,
+            0,
+        ) == Decimal("3")
+
     def test_half_away_from_zero_rounding(self):
         """Test the HALF_AWAY_FROM_ZERO rounding mode."""
         # Test with exactly 0.5 - should round away from zero
-        assert apply_rounding(Decimal("2.5"), RoundingMode.HALF_AWAY_FROM_ZERO, 0) == Decimal("3")
-        assert apply_rounding(Decimal("-2.5"), RoundingMode.HALF_AWAY_FROM_ZERO, 0) == Decimal("-3")
-        
+        assert apply_rounding(
+            Decimal("2.5"),
+            RoundingMode.HALF_AWAY_FROM_ZERO,
+            0,
+        ) == Decimal("3")
+        assert apply_rounding(
+            Decimal("-2.5"),
+            RoundingMode.HALF_AWAY_FROM_ZERO,
+            0,
+        ) == Decimal("-3")
+
         # Test with non-half values - should use HALF_UP
-        assert apply_rounding(Decimal("2.4"), RoundingMode.HALF_AWAY_FROM_ZERO, 0) == Decimal("2")
-        assert apply_rounding(Decimal("2.6"), RoundingMode.HALF_AWAY_FROM_ZERO, 0) == Decimal("3")
+        assert apply_rounding(
+            Decimal("2.4"),
+            RoundingMode.HALF_AWAY_FROM_ZERO,
+            0,
+        ) == Decimal("2")
+        assert apply_rounding(
+            Decimal("2.6"),
+            RoundingMode.HALF_AWAY_FROM_ZERO,
+            0,
+        ) == Decimal("3")

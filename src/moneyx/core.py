@@ -444,7 +444,12 @@ class Money:
 
         return from_json(cls, json_str)
 
-    def _validate_precision(self, amount: Decimal, currency: Currency, rounding_mode: RoundingModeStr) -> None:
+    def _validate_precision(
+        self,
+        amount: Decimal,
+        currency: Currency,
+        rounding_mode: RoundingModeStr,
+    ) -> None:
         """
         Validate that the amount has the correct precision for the currency.
 

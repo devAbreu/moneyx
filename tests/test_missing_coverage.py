@@ -7,8 +7,8 @@ import pytest
 from moneyx import Money
 from moneyx.bulk import bulk_add, bulk_allocate, bulk_multiply, bulk_with_tax
 from moneyx.exceptions import SerializationError
-from moneyx.serialization import from_dict, from_json, to_json
 from moneyx.rounding import RoundingMode
+from moneyx.serialization import from_dict, from_json, to_json
 
 
 class TestComparisons:
@@ -357,24 +357,24 @@ class TestDistributeRemainder:
         m = Money("10.00", "USD")
         amounts = [Decimal("3.33"), Decimal("3.33"), Decimal("3.34")]
         unit = Decimal("0.01")
-        
+
         # Call the internal method directly with is_positive=False
         m._distribute_remainder(amounts, 0, False, unit)
-        
+
         # Check that the amount was decreased by the unit
         assert amounts[0] == Decimal("3.32")
         assert amounts[1] == Decimal("3.33")
         assert amounts[2] == Decimal("3.34")
-        
+
     def test_distribute_remainder_positive(self):
         """Test distributing positive remainders to amounts."""
         m = Money("10.00", "USD")
         amounts = [Decimal("3.33"), Decimal("3.33"), Decimal("3.33")]
         unit = Decimal("0.01")
-        
+
         # Call the internal method directly with is_positive=True
         m._distribute_remainder(amounts, 0, True, unit)
-        
+
         # Check that the amount was increased by the unit
         assert amounts[0] == Decimal("3.34")
         assert amounts[1] == Decimal("3.33")
@@ -383,28 +383,30 @@ class TestDistributeRemainder:
 
 class TestValidatePrecision:
     """Test the _validate_precision method directly to increase coverage."""
-    
+
     def test_non_int_exponent_handling(self):
         """Test _validate_precision with non-integer exponents."""
         from decimal import Decimal
+
         from moneyx.core import Money
-        from moneyx.rounding import RoundingMode
-        
+
         m = Money("10.00", "USD")
-        
+
         # Create a Decimal with a non-int exponent
         # We'll mock a non-int exponent by adding a patch
         class MockDecimal(Decimal):
             def as_tuple(self):
                 result = super().as_tuple()
+
                 # Return an object with a non-int exponent attribute
                 class Tuple:
                     def __init__(self, sign, digits, exponent):
                         self.sign = sign
                         self.digits = digits
                         self.exponent = "n"  # Non-int exponent
+
                 return Tuple(result.sign, result.digits, "n")
-        
+
         # Test the method directly
         amount = MockDecimal("123.456")
         m._validate_precision(amount, m.currency, RoundingMode.HALF_UP)
