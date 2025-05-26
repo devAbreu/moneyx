@@ -1,0 +1,151 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "build"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "moneyx"
+# Use dynamic versioning to read from src/moneyx/__init__.py
+dynamic = ["version"]
+description = "Precise and extensible library for handling money in Python"
+authors = [
+    {name = "devAbreu"}
+]
+maintainers = [
+    {name = "devAbreu"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = [
+    "money", 
+    "currency", 
+    "finance", 
+    "accounting", 
+    "decimal", 
+    "monetary", 
+    "precision"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "Babel>=2.12.0",
+    "typing-extensions>=4.0.0; python_version < '3.10'",
+]
+
+[project.urls]
+Homepage = "https://github.com/devAbreu/moneyx"
+Documentation = "https://github.com/devAbreu/moneyx"
+"Bug Tracker" = "https://github.com/devAbreu/moneyx/issues"
+"Source Code" = "https://github.com/devAbreu/moneyx"
+"Changelog" = "https://github.com/devAbreu/moneyx/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["moneyx"]
+
+[tool.setuptools.package-data]
+moneyx = ["py.typed"]
+
+[tool.setuptools.dynamic]
+version = {attr = "moneyx.__version__"}
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.1.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.1",
+    "ruff>=0.0.54",
+    "pre-commit>=3.3.0",
+    "bandit>=1.7.5",
+]
+test = [
+    "pytest>=7.3.1",
+    "pytest-cov>=4.1.0",
+    "pytest-benchmark>=4.0.0",
+    "hypothesis>=6.70.0",
+    "pytest-xdist>=3.3.0",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=1.2.0",
+    "sphinx-autodoc-typehints>=1.23.0",
+    "myst-parser>=2.0.0",
+    "sphinxcontrib-napoleon>=0.7",
+]
+all = [
+    "moneyx[dev,test,docs]",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=moneyx --cov-report=term --cov-report=xml --cov-report=html"
+xfail_strict = true
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+strict_optional = true
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.ruff]
+target-version = "py38"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I", "N", "COM", "UP", "RUF"]
+ignore = ["E501", "RUF001", "RUF012"]
+exclude = ["src/moneyx/currency.py", "build/", "unpacked/", "scripts/"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["RUF003"]
+"tests/test_money.py" = ["RUF003"]
+"scripts/*" = ["RUF003"]
+
+[tool.bandit]
+exclude_dirs = ["tests"]
+skips = ["B101"]
+
+[tool.coverage.run]
+source = ["moneyx"]
+omit = ["*/test_*.py", "tests/test_benchmark.py"]
+parallel = true
+concurrency = ["thread", "multiprocessing"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100
+precision = 2
+skip_empty = true
+sort = "Cover"
+
+[tool.coverage.html]
+directory = "coverage_html_report"
+title = "Moneyx Coverage Report"
