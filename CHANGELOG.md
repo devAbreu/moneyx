@@ -19,6 +19,17 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Precision issues in allocation and remainder handling
 - Currency conversion edge cases
 
+## [0.1.1] - 2025-07-26
+
+### Added
+- Reference to Martin Fowler's Money Pattern in documentation
+- ReadTheDocs integration for comprehensive documentation
+
+### Changed
+- Updated documentation URLs to point to ReadTheDocs
+- Improved GitHub username references across documentation
+- Enhanced development and installation instructions
+
 ## [0.1.0] - 2025-05-26
 
 ### Added
