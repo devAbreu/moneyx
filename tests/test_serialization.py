@@ -62,13 +62,20 @@ class TestSerialization:
 
         # Test with invalid currency type
         with pytest.raises(SerializationError) as exc_info:
-            data = {"amount": "10.00", "currency": 123}  # Integer is not a valid currency
+            data = {
+                "amount": "10.00",
+                "currency": 123,
+            }  # Integer is not a valid currency
             from_dict(Money, data)
         assert "Currency code must be string" in str(exc_info.value)
 
         # Test with invalid rounding type
         with pytest.raises(SerializationError) as exc_info:
-            data = {"amount": "10.00", "currency": "USD", "rounding": 123}  # Integer is not valid rounding
+            data = {
+                "amount": "10.00",
+                "currency": "USD",
+                "rounding": 123,
+            }  # Integer is not valid rounding
             from_dict(Money, data)
         assert "Rounding mode must be string" in str(exc_info.value)
 
@@ -189,17 +196,17 @@ class TestSerialization:
     def test_from_dict_money_creation_error(self):
         """Test from_dict error handling for Money creation failure."""
         from moneyx.exceptions import SerializationError
-        
+
         # This will fail when creating the Money object because "XYZ" is not a valid currency
         with pytest.raises(SerializationError) as exc_info:
             data = {"amount": "10.00", "currency": "XYZ", "rounding": "HALF_UP"}
             from_dict(Money, data)
         assert "Failed to create Money object" in str(exc_info.value)
-        
+
     def test_invalid_rounding_mode(self):
         """Test from_dict with invalid rounding mode."""
         from moneyx.exceptions import SerializationError
-        
+
         with pytest.raises(SerializationError) as exc_info:
             data = {"amount": "10.00", "currency": "USD", "rounding": "INVALID_MODE"}
             from_dict(Money, data)
