@@ -102,34 +102,50 @@ class TestRoundingEdgeCases:
         """Test the HALF_TOWARDS_ZERO rounding mode."""
         # Test with exactly 0.5 - should round towards zero
         assert apply_rounding(
-            Decimal("2.5"), RoundingMode.HALF_TOWARDS_ZERO, 0,
+            Decimal("2.5"),
+            RoundingMode.HALF_TOWARDS_ZERO,
+            0,
         ) == Decimal("2")
         assert apply_rounding(
-            Decimal("-2.5"), RoundingMode.HALF_TOWARDS_ZERO, 0,
+            Decimal("-2.5"),
+            RoundingMode.HALF_TOWARDS_ZERO,
+            0,
         ) == Decimal("-2")
 
         # Test with non-half values - should use HALF_UP
         assert apply_rounding(
-            Decimal("2.4"), RoundingMode.HALF_TOWARDS_ZERO, 0,
+            Decimal("2.4"),
+            RoundingMode.HALF_TOWARDS_ZERO,
+            0,
         ) == Decimal("2")
         assert apply_rounding(
-            Decimal("2.6"), RoundingMode.HALF_TOWARDS_ZERO, 0,
+            Decimal("2.6"),
+            RoundingMode.HALF_TOWARDS_ZERO,
+            0,
         ) == Decimal("3")
 
     def test_half_away_from_zero_rounding(self):
         """Test the HALF_AWAY_FROM_ZERO rounding mode."""
         # Test with exactly 0.5 - should round away from zero
         assert apply_rounding(
-            Decimal("2.5"), RoundingMode.HALF_AWAY_FROM_ZERO, 0,
+            Decimal("2.5"),
+            RoundingMode.HALF_AWAY_FROM_ZERO,
+            0,
         ) == Decimal("3")
         assert apply_rounding(
-            Decimal("-2.5"), RoundingMode.HALF_AWAY_FROM_ZERO, 0,
+            Decimal("-2.5"),
+            RoundingMode.HALF_AWAY_FROM_ZERO,
+            0,
         ) == Decimal("-3")
 
         # Test with non-half values - should use HALF_UP
         assert apply_rounding(
-            Decimal("2.4"), RoundingMode.HALF_AWAY_FROM_ZERO, 0,
+            Decimal("2.4"),
+            RoundingMode.HALF_AWAY_FROM_ZERO,
+            0,
         ) == Decimal("2")
         assert apply_rounding(
-            Decimal("2.6"), RoundingMode.HALF_AWAY_FROM_ZERO, 0,
+            Decimal("2.6"),
+            RoundingMode.HALF_AWAY_FROM_ZERO,
+            0,
         ) == Decimal("3")
