@@ -11,7 +11,7 @@ copyright = f"{datetime.now().year}, devAbreu"
 author = "devAbreu"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.0"
+release = "0.1.1"
 
 # Extensions
 extensions = [

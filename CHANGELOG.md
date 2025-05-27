@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Added
 - Reference to Martin Fowler's Money Pattern in documentation
 - ReadTheDocs integration for comprehensive documentation
+- Documentation on working with cents and smallest currency units
 
 ### Changed
 - Updated documentation URLs to point to ReadTheDocs
