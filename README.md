@@ -6,6 +6,8 @@
 
 A lightweight, precise, and professional library for handling money in Python applications. `moneyx` solves **precision, rounding, and representation issues** that occur when using floating-point types like `float` for monetary calculations.
 
+Unlike many Python money libraries, moneyx strictly enforces that all monetary amounts are represented with the correct number of decimal places for their currency. For example, 3.678 USD is automatically rejected as invalid (USD allows only 2 decimal places), as is 5.5 JPY (JPY allows 0 decimal places).
+
 ## 💰 Money Pattern
 
 This library implements the Money Pattern as described by Martin Fowler in his book "Patterns of Enterprise Application Architecture" (2002). As Fowler notes:
@@ -268,6 +270,10 @@ Run benchmarks yourself with:
 python -m pytest tests/test_benchmark.py --no-cov --benchmark-columns=Min,Max,Mean,Median,OPS
 ```
 
+## 👏 Acknowledgments
+
+This library was inspired by [py-money](https://github.com/vimeo/py-money) by Vimeo, while expanding functionality with additional features like multiple rounding strategies, allocation methods, and tax calculation utilities.
+   
 ## 📖 License
 
 MIT License - see [LICENSE](LICENSE) for details.
