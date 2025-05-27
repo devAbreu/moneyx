@@ -91,6 +91,38 @@ Multiply a Money object by a number:
     discount = price.multiply(0.20)       # $4.00 (20% of price)
     discounted = price.subtract(discount)  # $15.99
 
+Working with Cents
+-----------------
+
+Many financial applications store monetary values in the smallest currency unit (cents, pence, etc.). Here's how to work with cents in moneyx:
+
+.. code-block:: python
+
+    from decimal import Decimal
+    from moneyx import Money
+
+    # Converting from cents to dollars
+    cents_amount = 1299  # $12.99 in cents
+    price = Money(cents_amount / 100, "USD")
+    print(price.format())  # $12.99
+
+    # For more precision, use Decimal
+    cents_amount = 1299
+    price = Money(Decimal(cents_amount) / Decimal("100"), "USD")
+    print(price.format())  # $12.99
+
+    # Converting a Money object to cents
+    dollars = Money("45.67", "USD")
+    cents = int(dollars.amount * 100)  # 4567
+    print(f"Amount in cents: {cents}")
+
+    # Working with currencies that have 0 decimal places
+    yen_amount = 1000  # ¥1000 (JPY has 0 decimal places)
+    jpy = Money(yen_amount, "JPY")
+    print(jpy.format())  # ¥1,000
+
+Note that moneyx handles the smallest currency unit internally, but converting to/from cents may be necessary when interfacing with other systems or databases that store monetary values as integers.
+
 Rounding Strategies
 ------------------
 
