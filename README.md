@@ -3,6 +3,7 @@
 [![Test Coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://github.com/devAbreu/moneyx)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python Versions](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/devAbreu/moneyx)
 
 A lightweight, precise, and professional library for handling money in Python applications. `moneyx` solves **precision, rounding, and representation issues** that occur when using floating-point types like `float` for monetary calculations.
 
